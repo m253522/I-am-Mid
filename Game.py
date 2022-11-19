@@ -1,27 +1,34 @@
 import pygame
 import sys
 from Character import Mid
+from Background import BgScreen
 
 # Initialize pygame
 pygame.init()
 
-
 # Make screen/display
-def UpdateScreen():
-    screen.fill((50, 100, 50))
+# https://stackoverflow.com/questions/19954469/how-to-get-the-resolution-of-a-monitor-in-pygame
 
-
-(width, height) = (600, 600)
+(width, height) = (pygame.display.Info().current_w, pygame.display.Info().current_h)
 screen = pygame.display.set_mode((width, height))
-
-UpdateScreen()
 screen_rect = screen.get_rect()
 pygame.display.set_caption("My game")
+
+# Make levels from background.py class
+level = BgScreen(screen, width, height)
+
+# Function that updates the screen when needed
+def UpdateScreen():
+    screen.fill((50, 100, 50))
+    level.drawLevel1()
+
+UpdateScreen()
 
 # My character
 My_character = Mid()
 My_character.rect.midbottom = screen_rect.midbottom
 screen.blit(My_character.image, My_character.rect)
+
 # The infinite loop
 while True:
     recent_events = pygame.event.get()
@@ -36,15 +43,14 @@ while True:
                 pygame.quit()
                 sys.exit()
             if event.key == pygame.K_UP:
-                My_character.rect.y = My_character.rect.y - 10
+                My_character.moveUp()
                 UpdateScreen()
             if event.key == pygame.K_DOWN:
-                My_character.rect.y = My_character.rect.y + 10
+                My_character.moveDown()
                 UpdateScreen()
             if event.key == pygame.K_RIGHT:
-                My_character.rect.x = My_character.rect.x + 10
+                My_character.moveRight()
                 UpdateScreen()
             if event.key == pygame.K_LEFT:
-                My_character.rect.x = My_character.rect.x - 10
+                My_character.moveLeft()
                 UpdateScreen()
-
