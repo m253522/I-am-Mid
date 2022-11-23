@@ -1,5 +1,5 @@
 import pygame
-
+from Antagonist import Enemy
 
 class BgScreen:
     """Class for background screens"""
