@@ -23,23 +23,14 @@ level = BgScreen(screen, width, height)
 # My character
 My_character = Mid()
 My_character.rect.midbottom = screen_rect.midbottom
-screen.blit(My_character.image, My_character.rect)
 
 # Final Boss
-Dant = Enemy('images/Dant.png')
+# Dant = Enemy('images/Dant.png')
 
 # Common goon marine enemy
-Marine = Enemy('images/marine.png')
-screen.blit(Marine.image, Marine.rect)
-
-
-def LoadLevel1Entities():
-    screen.blit(Marine.image, (Marine.rect.x - 100, Marine.rect.y + 150))
-    Marine.moveRight()
-    screen.blit(Marine.image, (Marine.rect.x - 100, Marine.rect.y + 250))
-    Marine.moveRight()
-    screen.blit(Marine.image, (Marine.rect.x - 100, Marine.rect.y + 350))
-    Marine.moveRight()
+Marine1_1 = Enemy('images/marine.png', screen, screen_rect, 200, 120, 5)
+Marine1_2 = Enemy('images/marine.png', screen, screen_rect, 500, 200, 5)
+Marine1_3 = Enemy('images/marine.png', screen, screen_rect, 250, 380, 5)
 
 
 # def LoadBoss():
@@ -51,20 +42,22 @@ def LoadLevel1Entities():
 # Function that updates the screen when needed
 def UpdateScreen():
     screen.fill((50, 100, 50))
-    level.drawLevel1()
-    LoadLevel1Entities()
+    screen.blit(My_character.image, My_character.rect)
+    level.drawMainMenu()
 
+    # level.drawLevel1()
+    # Marine1_1.LoadLevel1Entity()
+    # Marine1_2.LoadLevel1Entity()
+    # Marine1_3.LoadLevel1Entity()
 
-UpdateScreen()
 
 # The infinite loop
 while True:
     recent_events = pygame.event.get()
-    screen.blit(My_character.image, My_character.rect)
     pygame.display.flip()
-    clock.tick(60)
+    clock.tick(100)
     UpdateScreen()
-    My_character.updateMovement()
+    # My_character.updateMovement()
     for event in recent_events:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_q:
