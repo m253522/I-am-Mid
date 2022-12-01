@@ -21,9 +21,8 @@ pygame.display.set_caption("I am Mid")
 level = BgScreen(screen, width, height)
 
 # My character
-My_character = Mid()
+My_character = Mid(screen, width, height)
 My_character.rect.midbottom = screen_rect.midbottom
-
 
 # Common goon marine enemy
 Marine1_1 = Enemy('images/marine.png', screen, screen_rect, 200, 120, 5)
@@ -59,9 +58,16 @@ level.drawMainMenu()
 def drawCharacter():
     if startGame:
         UpdateScreen()
+        clock.tick(100)
         screen.blit(My_character.image, My_character.rect)
         My_character.updateMovement()
-        clock.tick(100)
+        collide = pygame.Rect.colliderect(Marine1_1.rect, My_character.rect)
+        print(collide)
+        print(My_character.rect)
+        print(Marine1_1.rect)
+        #if collide:
+        #    My_character.rect = screen_rect.midbottom
+
 
 
 # The infinite loop

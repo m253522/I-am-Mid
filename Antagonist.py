@@ -27,3 +27,6 @@ class Enemy:
             self.rect.x = 0
             self.surface.blit(self.image, (self.rect.x - self.spawnX, self.rect.y + self.spawnY))
             self.moveRight()
+
+
+
