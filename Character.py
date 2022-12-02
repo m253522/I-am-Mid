@@ -50,6 +50,6 @@ class Mid:
 
         # Convert list back into tuple
         self.rect = tuple(self.rect)
-
+        self.rect = pygame.Rect([(self.rect[0]), (self.rect[1])], (self.image.get_width(), self.image.get_height()))
 
 

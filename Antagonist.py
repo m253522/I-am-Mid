@@ -12,21 +12,33 @@ class Enemy:
         self.spawnX = spawnX
         self.spawnY = spawnY
         self.speed = speed
+        self.velocityX = 0
+        self.velocityY = 0
+        self.rect.x = self.spawnX
+        self.rect.y = self.spawnY
 
     def moveRight(self):
-        self.rect.x += self.speed
+        self.velocityX = 0
+        if self.rect.x <= self.surface_rect[2]:
+            self.velocityX += self.speed
+            self.rect.x += self.velocityX
+        else:
+            self.rect.x = self.spawnX
 
-    def moveLeft(self):
-        self.rect.x -= self.speed
+    # def moveLeft(self):
+    #     self.velocityX = 0
+    #     self.velocityY = 0
+    #     self.velocityX -= self.speed
+    #     self.rect.x += self.velocityX
 
     def LoadLevel1Entity(self):
-        if self.rect.x - self.spawnX != self.surface_rect.right:
-            self.surface.blit(self.image, (self.rect.x - self.spawnX, self.rect.y + self.spawnY))
-            self.moveRight()
-        elif self.rect.x - self.spawnX == self.surface_rect.right:
-            self.rect.x = 0
-            self.surface.blit(self.image, (self.rect.x - self.spawnX, self.rect.y + self.spawnY))
-            self.moveRight()
+        self.moveRight()
+        self.surface.blit(self.image, self.rect)
+
+
+
+
+
 
 
 

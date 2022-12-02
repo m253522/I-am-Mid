@@ -25,9 +25,9 @@ My_character = Mid(screen, width, height)
 My_character.rect.midbottom = screen_rect.midbottom
 
 # Common goon marine enemy
-Marine1_1 = Enemy('images/marine.png', screen, screen_rect, 200, 120, 5)
-Marine1_2 = Enemy('images/marine.png', screen, screen_rect, 500, 200, 5)
-Marine1_3 = Enemy('images/marine.png', screen, screen_rect, 250, 380, 5)
+Marine1_1 = Enemy('images/marine.png', screen, screen_rect, -200, 170, 5)
+Marine1_2 = Enemy('images/marine.png', screen, screen_rect, -120, 350, 5)
+Marine1_3 = Enemy('images/marine.png', screen, screen_rect, -420, 420, 5)
 
 
 # Final Boss
@@ -61,13 +61,9 @@ def drawCharacter():
         clock.tick(100)
         screen.blit(My_character.image, My_character.rect)
         My_character.updateMovement()
-        collide = pygame.Rect.colliderect(Marine1_1.rect, My_character.rect)
-        print(collide)
-        print(My_character.rect)
-        print(Marine1_1.rect)
-        #if collide:
-        #    My_character.rect = screen_rect.midbottom
-
+        collide = pygame.Rect.colliderect(Marine1_1.rect, My_character.rect) or pygame.Rect.colliderect(Marine1_2.rect, My_character.rect) or pygame.Rect.colliderect(Marine1_3.rect, My_character.rect)
+        if collide:
+            My_character.rect = screen_rect.midbottom
 
 
 # The infinite loop
