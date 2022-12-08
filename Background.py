@@ -1,5 +1,4 @@
 import pygame
-from Antagonist import Enemy
 
 
 class BgScreen:
@@ -33,6 +32,8 @@ class BgScreen:
         self.menuTutorialTextRect.center = (self.screenWidth // 2, self.screenHeight // 1.3)
         self.menuTutorialText2Rect = self.menuTutorialText2.get_rect()
         self.menuTutorialText2Rect.center = (self.screenWidth // 2, self.screenHeight // 1.25)
+        # Score counter text
+        self.scoreTextFont = pygame.font.Font('freesansbold.ttf', 60)
 
     def drawMainMenu(self):
         pygame.draw.rect(self.surface, (255, 255, 255), (0, 0, self.screenWidth, self.screenHeight))
@@ -44,6 +45,13 @@ class BgScreen:
         self.surface.blit(self.menuTutorialText2, self.menuTutorialText2Rect)
 
     def drawLevel1(self):
+        # Import score variable from original file
+        from Game import Score
+        # Draw stribling using rectangles
         pygame.draw.rect(self.surface, (135, 62, 35), (0, 0, self.screenWidth, self.screenHeight / 5))
         pygame.draw.rect(self.surface, (135, 62, 35),
                          (0, self.screenHeight - self.screenHeight / 5, self.screenWidth, self.screenHeight / 5))
+        # Make score counter (This is in the function so that it updates with gameplay.)
+        scoreText = self.scoreTextFont.render(str(Score), True, (0, 0, 0))
+        scoreTextRect = scoreText.get_rect()
+        self.surface.blit(scoreText, scoreTextRect)

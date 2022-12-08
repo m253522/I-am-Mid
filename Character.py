@@ -9,7 +9,7 @@ class Mid:
         self.rect = self.image.get_rect()
         self.velocityX = 0
         self.velocityY = 0
-        self.speed = 1
+        self.speed = 2
         self.upPressed = False
         self.downPressed = False
         self.leftPressed = False
@@ -51,5 +51,3 @@ class Mid:
         # Convert list back into tuple
         self.rect = tuple(self.rect)
         self.rect = pygame.Rect([(self.rect[0]), (self.rect[1])], (self.image.get_width(), self.image.get_height()))
-
-

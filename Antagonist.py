@@ -25,20 +25,13 @@ class Enemy:
         else:
             self.rect.x = self.spawnX
 
-    # def moveLeft(self):
-    #     self.velocityX = 0
-    #     self.velocityY = 0
-    #     self.velocityX -= self.speed
-    #     self.rect.x += self.velocityX
-
     def LoadLevel1Entity(self):
+        from Game import Score
+        if Score >= 8:
+            self.speed = 9
+        elif Score >= 5:
+            self.speed = 7
+        else:
+            self.speed = 5
         self.moveRight()
         self.surface.blit(self.image, self.rect)
-
-
-
-
-
-
-
-
